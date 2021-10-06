@@ -1,0 +1,48 @@
+[root@as-50-200 ansible]# tree nginx/
+nginx/
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── playbook
+│   └── playbook.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
+[root@as-50-200 ansible]# cat nginx/playbook/playbook.yml
+---
+- name : Install nginx playbook
+  hosts : all
+  roles:
+  - ../../nginx
+
+[root@as-50-200 ansible]# cat nginx/tasks/main.yml
+---
+# tasks file for nginx
+- name: Install httpd
+  yum:
+    name: httpd
+    state: latest
+
+- name: Debug message
+  debug:
+    msg: " >_< 安裝好囉"
+
+- name: removed httpd
+  yum:
+    name: httpd
+    state: removed
+
+- name: Debug message1
+  debug:
+    msg: " >_< 安裝失敗囉"
