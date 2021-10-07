@@ -57,3 +57,38 @@ nginx/
 - name: Send telegram
   shell:
     curl "https://api.telegram我是token"我是token"/sendMessage?chat_id="我是頻道"&text=安裝完成囉!!!!! 我是分隔線!!!!!"
+
+
+ansible_facts
+
+[root@as-50-200 ansible]# cat ansible_fact_tester/playbook.yml
+---
+- name: ansible_Facts_practice
+  hosts: all
+  tasks:
+  - name: Print all available facts
+    ansible.builtin.debug:
+      var:  ansible_facts
+
+  - name: show ansible_facts_hostname
+    setup:
+      filter: " {{ ansible_default_ipv4.address }} "
+    register: a
+
+  - name: show ansible_facts_hostname
+    debug:
+      msg: " {{ a }} "
+
+  - name: show ansible_hostname_debug
+    debug:
+      msg: " {{ ansible_default_ipv4.address }} "
+
+  - name: show ansible_facts_hostname
+    debug:
+      msg: " {{ ansible_hostname }} "
+
+  - name: show ansible_processor
+    debug:
+      msg: " {{ ansible_processor }} "
+      
+ 心得，ansible_facts setup 出來的只需要引用第二層開始即可。
