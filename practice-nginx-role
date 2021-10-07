@@ -61,6 +61,7 @@ nginx/
 
 ansible_facts
 
+
 [root@as-50-200 ansible]# cat ansible_fact_tester/playbook.yml
 ---
 - name: ansible_Facts_practice
@@ -72,7 +73,7 @@ ansible_facts
 
   - name: show ansible_facts_hostname
     setup:
-      filter: " {{ ansible_default_ipv4.address }} "
+      filter: " {{ ansible_default_ipv4['address'] }} "
     register: a
 
   - name: show ansible_facts_hostname
@@ -90,5 +91,13 @@ ansible_facts
   - name: show ansible_processor
     debug:
       msg: " {{ ansible_processor }} "
-      
- 心得，ansible_facts setup 出來的只需要引用第二層開始即可。
+
+  - name: show ansible_devices
+    debug:
+      msg: " {{ ansible_devices.sda }} "
+
+心得 : 
+ansible_facts -m 時候，只需要直接使用第二階層變數即可。
+ansible_facts 兩種寫法，以 default_ipv4 做舉例
+1. ansible_default_ipv4.address 
+2. ansible_default_ipv4['address']
