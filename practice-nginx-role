@@ -1,0 +1,44 @@
+---                                                                                                                                                                                                                                                                                                                     # tasks file for nginx1
+- name: Install nginx1
+  yum:
+    name: nginx
+    state: latest
+  register: INSTALL_NGINX
+
+- name: Debug for install nginx
+  debug:
+    msg:
+    - " {{ INSTALL_NGINX }}"
+
+- name: start nginx1
+  service:
+    name: nginx
+    state: started
+  register: START_NGINX
+
+- name: Debug for start nginx1
+  debug:
+    msg:
+    - " {{ START_NGINX }}"
+
+- name: stop nginx1
+  service:
+    name: nginx
+    state: stopped
+  register: STOP_NGINX
+
+- name: Debug for start nginx
+  debug:
+    msg:
+    - " {{ STOP_NGINX }}"
+
+- name: removed_nginx1
+  yum:
+    name: nginx
+    state: removed
+  register: REMOVED_NGINX
+
+- name: Debug for start nginx
+  debug:
+    msg:
+    - " {{ REMOVED_NGINX }}"
