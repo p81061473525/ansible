@@ -32,6 +32,27 @@
     msg:
     - " {{ STOP_NGINX }}"
 
+[root@as-50-200 ansible]# cat ansible_fact_tester1/playbook.yml
+---
+- name: Practice nginx
+  hosts: all
+  gather_facts: True
+  tasks:
+  - name: echo selinunx status
+    shell:
+      getenforce
+
+  - name: ansible_facts_hostname
+    shell:
+      echo " {{ ansible_hostname }} "
+
+  - name: Debug ansible_hsotname
+    debug:
+      msg: " {{ ansible_hostname }} "
+
+  - name: get ansible_hostname into txt for check
+    shell:
+      echo hostname = " {{ ansible_hostname }} " >> ~/hostname.txt
 - name: removed_nginx1
   yum:
     name: nginx
