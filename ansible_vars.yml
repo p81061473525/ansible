@@ -24,3 +24,22 @@
   - name: show ansible_facts_ansible_distribution
     debug:
       msg: " 系統版本 {{ ansible_distribution }}"
+      
+############
+# hostvars #
+############
+  - name: show hostvars
+    debug:
+      msg: "  {{ hostvars['192.168.50.201']['ansible_default_ipv4']['address'] }} "
+
+#######################################################
+# inventory_dir  playbook 的 inventory 的所在資料夾
+# playbook_dir playbook 的所在資料夾
+#######################################################
+  - name: show inventory_dir
+    debug:
+      msg: " {{ inventory_dir }}"
+
+  - name: show playbook_dir
+    debug:
+      msg: " {{ playbook_dir }}"       
