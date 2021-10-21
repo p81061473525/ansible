@@ -1,0 +1,26 @@
+---
+- name: ansible_facts
+  hosts: all
+  tasks:
+  - name: show debug message
+    debug:
+      msg:
+      - "顯示 裝置名稱:"
+      - "Hello world1"
+      - "Hello world2"
+
+  - name: show ansible_facts_devives
+    debug:
+      msg: " 裝置名稱 {{ ansible_device_links }} "
+
+  - name: show ansible_facts_process
+    debug:
+      msg: " 處理器 {{ ansible_processor }} "
+
+  - name: show ansible_facts_ipv4
+    debug:
+      msg: " 網路位置 {{ ansible_all_ipv4_addresses }}"
+
+  - name: show ansible_facts_ansible_distribution
+    debug:
+      msg: " 系統版本 {{ ansible_distribution }}"
