@@ -1,0 +1,25 @@
+---
+- name: Install nginx
+  hosts: all
+  gather_facts: False
+  become: True
+  tasks:
+  - name: Install nginx with yum
+    yum:
+      name: httpd
+      state: latest
+    register: INSTALL_NGINX
+
+  - name: show install nginx results
+    debug:
+      var: INSTALL_NGINX
+
+  - name: revmoed nginx with yum
+    yum:
+      name: httpd
+      state: removed
+    register: REMOVED_NGINX
+
+  - name: show removed nginx results
+    debug:
+      var: REMOVED_NGINX
