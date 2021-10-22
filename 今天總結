@@ -1,5 +1,5 @@
 ###################
-
+今天練習有點多做個總結
 1.notify-handler.yaml 觸發
 1.yum-upgrade-all.yaml 全機更新
 1. ngnix-service.yml service 模組增加練習
