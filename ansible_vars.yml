@@ -24,7 +24,19 @@
   - name: show ansible_facts_ansible_distribution
     debug:
       msg: " 系統版本 {{ ansible_distribution }}"
-      
+
+######################
+# groups group_names #
+######################
+
+  - name: show groups
+    debug:
+      msg: " {{ groups }} "
+
+  - name: show groups_names
+    debug:
+      msg: " {{ group_names }}"
+
 ############
 # hostvars #
 ############
