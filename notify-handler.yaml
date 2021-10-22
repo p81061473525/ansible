@@ -1,0 +1,22 @@
+---
+- name: 觸發器練習腳本
+  hosts: all
+  become: True
+  tasks:
+  - name: Install ngixn package
+    yum:
+      name: nginx
+      state: latest
+  - name: copy nginx.conf
+    template:
+      src: ./iptables.sh
+      dest: ~/iptables.sh
+      owner: root
+      group: root
+      mode: 0645
+    notify:
+                                                                                                                                                                                                                   handlers:
+  - name: restart nginx service
+    service:
+      name: nginx
+      state: started
