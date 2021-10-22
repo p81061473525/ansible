@@ -1,0 +1,11 @@
+###################
+
+1.notify-handler.yaml 觸發
+1.yum-upgrade-all.yaml 全機更新
+1. ngnix-service.yml service 模組增加練習
+1.ansible_facts 練習獲取 ansible_facts 變數。
+* groups
+* group_names
+* hostvars
+* inventory_dir 與 playbook_dir
+#####################
