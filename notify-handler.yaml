@@ -14,7 +14,7 @@
       owner: root
       group: root
       mode: 0645
-    notify:
+    notify: restart nginx service
                                                                                                                                                                                                                    handlers:
   - name: restart nginx service
     service:
