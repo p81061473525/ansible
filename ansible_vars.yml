@@ -1,61 +1,59 @@
 ---
-- name: ansible_facts
+- name: Practice ansible_facts
   hosts: all
+  gather_facts: True
   tasks:
-  - name: show debug message
+  - name: 練習ansible_facts
     debug:
       msg:
-      - "顯示 裝置名稱:"
-      - "Hello world1"
-      - "Hello world2"
+      - "這是第一行"
+      - "這是第二行"
+      - "這是第三行"
 
-  - name: show ansible_facts_devives
+  - name: 顯示主機相關資訊
     debug:
-      msg: " 裝置名稱 {{ ansible_device_links }} "
+      msg:
+      - 主機名稱 = " {{ ansible_hostname }} "
+      - 主機作業系統家族 = " {{ ansible_os_family }} "
+      - 處理器 = " {{ ansible_processor }} "
+      - 主機 硬碟資訊 = " {{ ansible_devices }} "
+      - 主機 IPv4 = " {{ ansible_all_ipv4_addresses }} "
+      - 主機 SELINUX 狀態 = " {{ ansible_selinux }} "
 
-  - name: show ansible_facts_process
-    debug:
-      msg: " 處理器 {{ ansible_processor }} "
+########################
+# groups 與 group_names #
+########################
+# groups	列出 inventory 中所有的主机和主机组
+# group_names	列出托管主机所在的所有组
+########################
 
-  - name: show ansible_facts_ipv4
-    debug:
-      msg: " 網路位置 {{ ansible_all_ipv4_addresses }}"
-
-  - name: show ansible_facts_ansible_distribution
-    debug:
-      msg: " 系統版本 {{ ansible_distribution }}"
-
-######################
-# groups group_names #
-######################
-
-  - name: show groups
+- name: 顯示 groups
     debug:
       msg: " {{ groups }} "
 
-  - name: show groups_names
+  - name: 顯示 group_name
     debug:
-      msg: " {{ group_names }}"
+      msg: " {{ group_names }} "
 
 ############
 # hostvars #
 ############
-  - name: show hostvars
+
+  - name: 顯示 hostvars
     debug:
       msg:
-      - " 192.168.50.201 的 IP {{ hostvars['192.168.50.201']['ansible_default_ipv4']['address'] }} "
-      - " 192.168.50.202 的 IP {{ hostvars['192.168.50.202']['ansible_default_ipv4']['address'] }} "
-      - " 192.168.50.203 的 IP {{ hostvars['192.168.50.203']['ansible_default_ipv4']['address'] }} "
-      - " 192.168.50.204 的 IP {{ hostvars['192.168.50.204']['ansible_default_ipv4']['address'] }} "
+      - 192.168.50.201 的 IP {{ hostvars['192.168.50.201']['ansible_default_ipv4']['address'] }}
+      - 192.168.50.202 的 IP {{ hostvars['192.168.50.202']['ansible_default_ipv4']['address'] }}
+      - 192.168.50.203 的 IP {{ hostvars['192.168.50.203']['ansible_default_ipv4']['address'] }}
+      - 192.168.50.204 的 IP {{ hostvars['192.168.50.204']['ansible_default_ipv4']['address'] }}
 
-#######################################################
-# inventory_dir  playbook 的 inventory 的所在資料夾
-# playbook_dir playbook 的所在資料夾
-#######################################################
-  - name: show inventory_dir
-    debug:
-      msg: " {{ inventory_dir }}"
+#################################
+# inventory_dir 與 playbook_dir #
+#################################
 
-  - name: show playbook_dir
+  - name: 顯示 inventory_dir 與 playbook_dir
     debug:
-      msg: " {{ playbook_dir }}"       
+      msg:
+      - " {{ inventory_dir }} "
+      - " {{ playbook_dir }} "
+
