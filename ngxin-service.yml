@@ -1,0 +1,32 @@
+---
+- name: start ngiinx
+  hosts: all
+  become: True
+  tasks:
+  - name: Install nginx
+    yum:
+      name: nginx
+      state: latest
+    register: INSTALL_NGINX
+
+  - name: show INSTALL_NGINX
+    debug:
+      var: INSTALL_NGINX
+
+  - name: register nginx status
+    shell:
+      cmd:
+        systemctl stop nginx
+    register: STATUS_NGINX
+
+  - name: show nginx status
+    debug:
+      msg: moudle first "{{ STATUS_NGINX }}"
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started                                                                                                                                                                                             
+  - name: show nginx status
+    debug:
+      msg: moudle after "{{ STATUS_NGINX }}"
