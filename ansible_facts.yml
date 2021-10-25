@@ -1,0 +1,29 @@
+---
+- name: 練習 ansible_facts
+  hosts: all
+  tasks:
+  - name: debug 模板
+    debug:
+      msg:
+      - " 這是第一行 "
+      - " 這是第二行 "
+      - " 這是第三行 "
+
+  - name: ansible_facts 練習
+    debug:
+      msg:
+      - 主機名稱= " {{ groups }} "
+      - 主機系統名稱 = " {{ groups }} "
+      - 主機系統系統家族 = " {{ groups }} "
+      - 主機 IP = " {{ groups }} "
+      - 主機硬碟資訊 = " {{ groups }} "
+      - 主機記憶體資訊 = " {{ groups }} "
+      - 主機運行時間 = " {{ groups }} "
+
+  - name: 練習相關變數 groups,group_names,inventory_dir,playbook_dir
+    debug:
+      msg:
+      - groups = " {{ groups }} "
+      - group_names = " {{ group_names }} "
+      - inventory_dir = " {{ inventory_dir }} "
+      - playbook_dir = " {{ playbook_dir }} "
