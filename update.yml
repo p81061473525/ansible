@@ -1,0 +1,9 @@
+---
+- name: 更新所有軟體
+  hosts: all
+  become: True
+  tasks:
+  - name: 更新所有軟體
+    yum:
+      name: '*'
+      state: latest
