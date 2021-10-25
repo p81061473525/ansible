@@ -1,0 +1,42 @@
+---
+- name: practice nginx template
+  hosts: all
+  become: True
+  tasks:
+  - name: install nginx
+    yum:
+      name: nginx
+      state: latest
+
+  - name: copy template
+    template:
+      src: ./nginx_index.html
+      dest: /usr/share/nginx/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+
+  - name: debug_uri module
+    uri:
+      url: http://127.0.0.1
+      return_content: yes
+    register: DEBUG_URI
+
+  - name: debug_rui
+    debug:
+      var: DEBUG_URI
+
+  - name: debug
+    shell:
+      cmd:
+        curl -s http://127.0.0.1
+    register: debugIPT
+
+  - name: debug
+    debug:
+      var: debugIPT
