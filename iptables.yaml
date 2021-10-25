@@ -1,0 +1,34 @@
+---
+- name: practice template
+  hosts: all
+  become: True
+  tasks:
+  - name: install nginx
+    yum:
+      name: nginx
+      state: latest
+
+  - name: copy template
+    template:
+      src: ./iptables.sh
+      dest: ~/iptables.sh
+      owner: root
+      group: root
+      mode: 0655
+    notify: start nginx
+
+  - name: debug
+    shell:
+      cmd:
+        cat ~/iptables.sh
+    register: debugIPT
+
+  - name: debug
+    debug:
+      var: debugIPT
+
+  handlers:
+  - name: start nginx
+    service:
+      name: nginx
+      status: latest
