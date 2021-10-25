@@ -1,0 +1,57 @@
+---
+- name: 安裝 NGINX 劇本
+  hosts: all
+  become: True
+  tasks:
+  - name: 安裝 NGINX
+    yum:
+      name: nginx
+      state: latest
+    register: INSTALL_NGINX
+
+  - name: debug
+    debug:
+      var: INSTALL_NGINX
+
+  - name: 啟動 NGINX
+    service:
+      name: nginx
+      state: started
+    register: SN
+
+  - name: debug
+    debug:
+      var: SN
+
+  - name: shell cmd
+    shell:
+      cmd: systemctl status nginx
+    register: SN_CMD
+
+  - name: 顯示 shell cmd 變數
+    debug:
+      var: SN_CMD
+
+  - name: 關閉 NGINX
+    service:
+      name: nginx
+      state: stopped
+    register: SNT
+
+  - name: 顯示 NGINX 結果
+    debug:
+      var: SNT
+
+  - name: 顯示 shell cmd 變數
+    debug:
+      var: SN_CMD
+
+  - name: 移除 nginx
+    yum:
+      name: nginx
+      state: removed
+    register: REMOVED_NGINX
+
+  - name: debug
+    debug:
+      var: REMOVED_NGINX
