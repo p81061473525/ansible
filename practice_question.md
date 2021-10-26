@@ -40,15 +40,13 @@
 7. 請創建 user.yaml 使用者劇本，
    1. 請使用 變數 與 變數名稱檔案 的方式，創建 關係圖如下人員
    - admin 群組成員 john,mary,ha 
-   - user 群組成員 user1,user2,user3,user4
-8. 請創建 loop-yum.yaml 迴圈劇本
-   1. 使用迴圈 loop 方式，安裝
-   - nginx 
-   - httpd 
+   - user 群組成員 user1,user2,user3,user4  
+8. 請創建 loop-yum.yaml 迴圈劇本  
+   1. 使用迴圈 loop 方式，安裝  
+   - nginx  
+   - httpd  。
 9. 請創建 iptables.yaml 防火牆劇本
    1. 請使用 template/iptable.sh 範本，僅讓 192.168.50.200 主控端訪問各自節點，而各自節點間無法訪問。
-
-
 10. 承接 第5題 nginx 題目，
    1. 複製一份 template/apple.conf 改成 template/SAMPLE.conf，並將相關變數替換。
    - 57222 替換成為 SAMPLE_LISTEN_PORT
