@@ -2,7 +2,7 @@
 10-25 練習總結
 
 1. 請撰寫 update.yaml 全機軟體 更新劇本。
-2. 請撰寫 nginx 建置劇本，並使每個主機訪問 80 port 可以 顯示 hello world。
+2. 請撰寫 install_nginx.yaml 建置劇本，並使每個主機訪問 80 port 可以 顯示 hello world。
    hint: 可以串建模板 index.html 
    - 隱藏題目 , 請設定 aaa.conf , 網域 aaa.com , 聽 57222 port 
    - 隱藏題目 , 請設定 變數檔檔案 , 並使用 loop , 網路 XXX.com , 各廳不同的 port 號。  
