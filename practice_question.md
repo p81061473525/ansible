@@ -37,11 +37,24 @@
    - 主機設備清單 所有主機群組名稱與資料
    - 主機設備清單 所在位置
    - 本劇本所在位置 
-7. 請創建 user.yaml，
-   - 使用者模組。
-     admin 群組成員 john,mary,ha 
-     user 群組成員 user1,user2,user3,user4
-# 7. 條件 劇本
-# 8. 創建 防火牆劇本，只能夠允許 192.168.50.202 主機進入。
-# 11. playbook CICD
+7. 請創建 user.yaml 使用者劇本，
+   1. 請使用 變數 與 變數名稱檔案 的方式，創建 關係圖如下人員
+   - admin 群組成員 john,mary,ha 
+   - user 群組成員 user1,user2,user3,user4
+8. 請創建 loop-yum.yaml 迴圈劇本
+   1. 使用迴圈 loop 方式，安裝
+   - nginx 
+   - httpd 
+9, 請創建 iptables.yaml 防火牆劇本
+   1. 請使用 template/iptable.sh 範本，僅讓 192.168.50.200 主控端訪問各自節點，而各自節點間無法訪問。
+10. 承接 第5題 nginx 題目，
+   1. 複製一份 template/apple.conf 改成 template/SAMPLE.conf，並將相關變數替換。
+   - 57222 替換成為 SAMPLE_LISTEN_PORT
+   - apple.com 替換成為 SAMPLE_SERVER_NAME
+   - root 位置請替換成為 SAMPLE_ROOT_PATH
+   2. 請撰寫 nginxsample.yaml 劇本，並使用相關變數，建立兩個網站，內容必須顯示相關域名。
+12. 請創建 條件劇本 
+13. 請創建 LVM.yaml，完成一次 LVM 切割操作。
+14. 請將 inventory 進行加密，解密，重製密碼，最後訪問 inventory 內容必須要可以須入密碼才能訪問主機資訊。
+# 15. playbook CICD
 
