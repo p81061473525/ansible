@@ -1,8 +1,5 @@
 練習題目 : 
 
-- 隱藏題目 , 請設定 apple.conf , 網域 apple.com , 聽 57222 port，內容要顯示以下內容
-- 隱藏題目 , 請設定 變數檔檔案 , 並使用 loop , 網路 XXX.com , 聽 不同的 port 號
-
 1. 請撰寫 machine.yaml 主機資訊蒐集劇本，
    1. 蒐集以下資訊，並將資訊蒐集至主控端 ~ 目錄底下 :
    - 主機名稱
@@ -26,16 +23,20 @@
    - 安裝 htop 軟件。
    - 確認 htop 安裝。
 3. 請撰寫 install_nginx.yaml nginx 建置劇本，
-   並使每個主機訪問 80 port 可以 顯示 hello world，
+   1. 
+   2. 並使每個主機訪問 80 port 可以 顯示 hello world，
    驗證過程請使用 uri 模組，
    最後步驟請移除 nginx 並驗證。
-   hint: 可以串建模板 index.html 
+   hint: 可以串建模板 index.html
+   - 隱藏題目 , 請設定 apple.conf , 網域 apple.com , 聽 57222 port，內容要顯示以下內容
+   - 隱藏題目 , 請設定 變數檔檔案 , 並使用 loop , 網路 XXX.com , 聽 不同的 port 號
 4. 請撰寫 facts.ymal 主控制端 以下項目
+   1. 
    - 被控制端群組 所在群組
    - 主機設備清單 所有主機群組名稱與資料
    - 主機設備清單 所在位置
    - 本劇本所在位置 
-5. 請創建 user.yaml 
+5. 請創建 user.yaml，
    - 包含 使用者群組 admin,user, 
      admin 群組成員 john,mary,ha 
      user 群組成員 user1,user2,user3,user4
