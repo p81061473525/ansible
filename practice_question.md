@@ -53,8 +53,8 @@
    - apple.com 替換成為 SAMPLE_SERVER_NAME
    - root 位置請替換成為 SAMPLE_ROOT_PATH
    2. 請撰寫 nginxsample.yaml 劇本，並使用相關變數，建立兩個網站，內容必須顯示相關域名。
-12. 請創建 條件劇本 
-13. 請創建 LVM.yaml，完成一次 LVM 切割操作。
-14. 請將 inventory 進行加密，解密，重製密碼，最後訪問 inventory 內容必須要可以須入密碼才能訪問主機資訊。
+11. 請創建 條件劇本 
+12. 請創建 LVM.yaml，完成一次 LVM 切割操作。
+13. 請將 inventory 進行加密，解密，重製密碼，最後訪問 inventory 內容必須要可以須入密碼才能訪問主機資訊。
 # 15. playbook CICD
 
