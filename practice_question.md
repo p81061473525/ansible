@@ -23,15 +23,13 @@
    - 安裝 htop 軟件。
    - 確認 htop 安裝。
 3. 請撰寫 install_nginx.yaml nginx 建置劇本，
-   1. 
-   2. 並使每個主機訪問 80 port 可以 顯示 hello world，
-   驗證過程請使用 uri 模組，
-   最後步驟請移除 nginx 並驗證。
-   hint: 可以串建模板 index.html
-   - 隱藏題目 , 請設定 apple.conf , 網域 apple.com , 聽 57222 port，內容要顯示以下內容
-   - 隱藏題目 , 請設定 變數檔檔案 , 並使用 loop , 網路 XXX.com , 聽 不同的 port 號
+   1. 並使每個主機訪問 80 port 正常訪問
+   2. 將 template/index.html 複製到 nginx 預設目錄，讓訪問 port 可以 顯示 Hello World。
+   3. 請使用 uri 模組驗證 hello world。
+   4. 請使用 shell 模組驗證 hello world。
+   5. 將 template/apple.conf 複製到 nginx conf 目錄，讓訪問 57222 port 可以顯示 APPLE hello world。
 4. 請撰寫 facts.ymal 主控制端 以下項目
-   1. 
+   1. 劇本請顯示以下項目 : 
    - 被控制端群組 所在群組
    - 主機設備清單 所有主機群組名稱與資料
    - 主機設備清單 所在位置
