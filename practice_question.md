@@ -1,6 +1,9 @@
 練習題目 : 
-
-1. 請撰寫 machine.yaml 主機資訊蒐集劇本，
+1. 請於 root 目錄 創建 ansible 工作 資料夾，
+   1. 環境設定以下項目
+   -  可以控制被控端主機。
+   -  主機清單必須在工作目錄底下。   
+3. 請撰寫 machine.yaml 主機資訊蒐集劇本，
    1. 蒐集以下資訊，並將資訊蒐集至主控端 ~ 目錄底下 :
    - 主機名稱
    - 主機作業系統
@@ -9,7 +12,7 @@
    - 主機IP位置
    - 主機硬碟資訊
    - 主機記憶體大小
-2. 請撰寫 update.yaml 全機軟體 更新劇本，內容包括，
+4. 請撰寫 update.yaml 全機軟體 更新劇本，內容包括，
    1. 更新 YUM 所有套件
    2. 安裝 netstat 
    - 確認 netstat 軟件
@@ -22,20 +25,20 @@
    - 使用 內建模組新增 "epel 昌庫"，
    - 安裝 htop 軟件。
    - 確認 htop 安裝。
-3. 請撰寫 install_nginx.yaml nginx 建置劇本，
+5. 請撰寫 install_nginx.yaml nginx 建置劇本，
    1. 並使每個主機訪問 80 port 正常訪問
    2. 將 template/index.html 複製到 nginx 預設目錄，讓訪問 port 可以 顯示 Hello World。
    3. 請使用 uri 模組驗證 hello world。
    4. 請使用 shell 模組驗證 hello world。
    5. 將 template/apple.conf 複製到 nginx conf 目錄，讓訪問 57222 port 可以顯示 APPLE hello world。
-4. 請撰寫 facts.ymal 主控制端 以下項目
+6. 請撰寫 facts.ymal 主控制端 以下項目
    1. 劇本請顯示以下項目 : 
    - 被控制端群組 所在群組
    - 主機設備清單 所有主機群組名稱與資料
    - 主機設備清單 所在位置
    - 本劇本所在位置 
-5. 請創建 user.yaml，
-   - 包含 使用者群組 admin,user, 
+7. 請創建 user.yaml，
+   - 使用者模組。
      admin 群組成員 john,mary,ha 
      user 群組成員 user1,user2,user3,user4
 # 7. 條件 劇本
