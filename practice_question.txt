@@ -12,13 +12,21 @@
    - 主機IP位置
    - 主機硬碟資訊
    - 主機記憶體大小
-1. 請撰寫 update.yaml 全機軟體 更新劇本。
-2. 請撰寫 install_nginx.yaml nginx 建置劇本，
+2. 請撰寫 update.yaml 全機軟體 更新劇本，內容包括，
+   - 更新 YUM 所有套件
+   - 確認 netstat 軟件。
+   - 安裝 netstat 軟件
+   - 確認 netstat 安裝
+   - 移除 htop 軟件，並確認。
+   - 移除 YUM epel-release ，
+   - 使用 內建模組新增 "epel 昌庫"，
+   - 安裝 htop 軟件，並確認。
+3. 請撰寫 install_nginx.yaml nginx 建置劇本，
    並使每個主機訪問 80 port 可以 顯示 hello world，
    驗證過程請使用 uri 模組，
    最後步驟請移除 nginx 並驗證。
    hint: 可以串建模板 index.html 
-3. 請撰寫 selfrepo.yaml 創建 自我倉庫的模組， 
+
 
 4. 請撰寫 劇本顯示 ansible 控制端以下項目
    - 被控制端群組 所在群組
