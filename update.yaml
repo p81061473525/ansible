@@ -1,0 +1,28 @@
+---
+- name: 更新套件劇本
+  hosts: all
+  become: true
+  tasks:
+  - name: 更新套件
+    yum:
+      name: '*'
+      state: latest
+  - name: 安裝 netstat
+    yum:
+      name: net-tools
+      state: latest
+  - name: 移除 htop
+    yum:
+      name: htop
+      state: removed
+  - name: 移除 epel
+    yum:
+      name: epel-release
+      state: removed
+  - name: ansible module 安裝 epel 昌庫
+    yum_repository:
+      name: epel-ansiblebb11
+      description: EPEL YUM repo2
+      file: epel-ansiblebb
+      baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+      gpgcheck: no
