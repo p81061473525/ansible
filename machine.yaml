@@ -1,0 +1,36 @@
+---
+- name: 主機設定與資訊搜集劇本
+  hosts: all
+  gather_facts: True
+  become: true
+  tasks:
+  - name: 關閉 selinux
+    selinux:
+      state: disabled
+
+  - name: 校正時區
+    shell:
+      cmd: |
+        timedatectl set-timezone "Asia/Taipei"
+        systemctl restart chronyd
+
+  - name: 重啟主機第一次
+    reboot:
+
+  - name: 重啟主機第二次
+    reboot:
+
+  - name: 重啟主機第三次
+    reboot:
+
+  - name: 蒐集主機資訊
+    debug:
+      msg:
+      - 主機名稱 = " {{ ansible_hostname }} "
+      - 主機作業系統 = " {{ ansible_distribution }} "
+      - 主機作業系統家族 = " {{ ansible_os_family }} "
+      - 主機系統架構 = " {{ ansible_userspace_architecture }} "
+      - 主機IP 位置 = " {{ ansible_eth1['ipv4']['address'] }} "
+      - 主機硬碟資訊 = " {{ ansible_device_links['ids'] }} "
+      - 主機記憶體大小 = " {{ ansible_memory_mb['real']['total'] }}"
+    delegate_to: ~/info.txt
