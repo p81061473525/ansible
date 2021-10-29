@@ -33,4 +33,3 @@
       - 主機IP 位置 = " {{ ansible_eth1['ipv4']['address'] }} "
       - 主機硬碟資訊 = " {{ ansible_device_links['ids'] }} "
       - 主機記憶體大小 = " {{ ansible_memory_mb['real']['total'] }}"
-    delegate_to: ~/info.txt
