@@ -7,7 +7,7 @@
     yum:
       name: '*'
       state: latest
-  - name: 安裝 netstat
+  - name: 安裝 netstat # netsat 在 net-tools 裡
     yum:
       name: net-tools
       state: latest
@@ -21,8 +21,8 @@
       state: removed
   - name: ansible module 安裝 epel 昌庫
     yum_repository:
-      name: epel-ansiblebb11
+      name: epel-ansible
       description: EPEL YUM repo2
-      file: epel-ansiblebb
+      file: epel-ansible
       baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
       gpgcheck: no
