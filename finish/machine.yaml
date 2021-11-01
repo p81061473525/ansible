@@ -3,6 +3,10 @@
   hosts: all
   gather_facts: True
   become: true
+  vars:
+  - BOT_TOKEN: "-------"
+  - CHAT_ID: "--------"
+  - MESSAGE: "--------"
   tasks:
   - name: 關閉 selinux
     selinux:
@@ -33,3 +37,7 @@
       - 主機IP 位置 = " {{ ansible_eth1['ipv4']['address'] }} "
       - 主機硬碟資訊 = " {{ ansible_device_links['ids'] }} "
       - 主機記憶體大小 = " {{ ansible_memory_mb['real']['total'] }}"
+  - name: 通知主機已經重啟完成
+    shell:
+      cmd:
+        curl "https://api.telegram.org/bot{{ BOT_TOKEN }}/sendMessage?chat_id={{ CHAT_ID }}&text={{ ansible_facts['hostname'] }}{{ MESSAGE }}"   
