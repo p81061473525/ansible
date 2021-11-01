@@ -7,6 +7,10 @@
   - BOT_TOKEN: "-------"
   - CHAT_ID: "--------"
   - MESSAGE: "--------"
+  ################################
+  # 其實 token 可以用 vars_files: #
+  # 然後放入 .gitignore           #
+  ################################
   tasks:
   - name: 關閉 selinux
     selinux:
@@ -37,6 +41,7 @@
       - 主機IP 位置 = " {{ ansible_eth1['ipv4']['address'] }} "
       - 主機硬碟資訊 = " {{ ansible_device_links['ids'] }} "
       - 主機記憶體大小 = " {{ ansible_memory_mb['real']['total'] }}"
+      
   - name: 通知主機已經重啟完成
     shell:
       cmd:
