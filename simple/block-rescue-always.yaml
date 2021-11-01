@@ -1,0 +1,41 @@
+---
+- name: 這是一個 block-rescue-always 的劇本
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+  - name: 1.正確進入 always                                                                                                                                                                block:
+    - name: 顯示訊息
+      debug:
+        msg:
+        - '!!!進入選擇囉!!!'
+    rescue:
+    - name: 錯誤近來訊息
+      debug:
+        msg:
+        - 這是錯誤訊息
+    always:
+    - name: 這是正確訊息
+      debug:
+        msg:
+        - 這是正確訊息
+  ############################
+  - name: 2.錯誤進入 rescue
+    block:
+    - name: 顯示訊息
+      debug:
+        msg:
+        - '!!!進入選擇囉!!!'
+    - name: 錯誤訊息(強迫錯誤)
+      shell:
+        cmd: /bin/false
+    rescue:
+    - name: 錯誤近來訊息
+      debug:
+        msg:
+        - 這是錯誤訊息
+    always:
+    - name:
+      debug:
+        msg:
+        - 這式正確訊息
