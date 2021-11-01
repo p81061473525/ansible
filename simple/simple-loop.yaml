@@ -7,7 +7,7 @@
     - mary
     - pether
   vars_files:
-  - simple-vars/user.yaml
+   simple-vars/user.yaml
   tasks:
   - name: simple loop debug
     debug:
