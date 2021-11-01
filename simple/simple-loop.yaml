@@ -1,0 +1,29 @@
+---
+- name: simple loop debug
+  hosts: all
+  vars:
+    user:
+    - john
+    - mary
+    - pether
+  vars_files:
+  - simple-vars/user.yaml
+  tasks:
+  - name: simple loop debug
+    debug:
+      msg:
+      - this {{ item }}
+    loop:
+    - 1
+    - 2
+    - 3
+  - name: simple loop with vars user
+    debug:
+      msg:
+      - this {{ item }}
+    loop: "{{ user }}"
+  - name: simple loop with vars_files
+    debug:
+      msg:
+      - those {{ item }}
+    loop: "{{ varsfile_user }}"
