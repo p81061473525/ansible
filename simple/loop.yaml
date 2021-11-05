@@ -1,0 +1,27 @@
+---
+- name: loop
+  hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    apple:
+      servername: apple.com
+      port: 80
+    banana:
+      servername: banana.com
+      port: 8081
+  tasks:
+  - name: simple loop
+    debug:
+      msg:
+      - this is "{{ item }}"
+    loop:
+    - 1
+    - 2
+    - 3
+  - name: vars loop
+    debug:
+    debug:
+      msg:
+      - this is "{{ item.key }}" ':' "{{ item.value }}"
+    loop: "{{ apple | dict2items }}"
