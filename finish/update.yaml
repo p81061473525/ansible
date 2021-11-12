@@ -1,0 +1,10 @@
+---
+- name: update software
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: update software
+    yum:
+      name: '*'
+      state: latest
