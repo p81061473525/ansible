@@ -1,0 +1,15 @@
+---
+- name: init machine
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: disabled selinux
+    selinux:
+      state: disabled
+  - name: reboot 1st
+    reboot:
+  - name: reboot 2nd
+    reboot:
+  - name: reboot 3rd
+    reboot:
