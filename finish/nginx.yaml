@@ -27,7 +27,7 @@
   - name: curl http://127.0.0.1
     uri:
       url: http://127.0.0.1
-      return_contexnt: yes
+      return_content: yes
     register: URI_80
   - name: show URI_80
     debug:
