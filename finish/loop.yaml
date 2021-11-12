@@ -1,0 +1,72 @@
+---
+- name: loop practice
+  hosts: all
+  vars:
+    usertasks2:
+    - user1
+    - user2
+    - user3
+    package3:
+    - net-tools
+    - epel-release
+    - httpd
+    - nginx
+    dict4:
+      apple.com:
+        server_name: 'apple.com'
+        server_port: '8081'
+        server_root: '/opt/apple'
+      banana.com:
+        server_name: 'banana.com'
+        server_port: '8082'
+        server_root: '/opt/banana'
+      cat.com:
+        server_name: 'cat.com'
+        server_port: '8083'
+        server_root: '/opt/cat'
+      dog.com:
+        server_name: 'dog.com'
+        server_port: '8084'
+        server_root: '/opt/dog'
+  become: true
+  tasks:
+  - name: mission 1 simple loop
+    debug:
+      msg: "{{ item }}"
+    loop:
+      - tester1
+      - tester2
+  - name: mission 2 simple loop
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ usertasks2 }}"
+  - name: mission 3 package
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ package3 }}"
+  - name: mission 4 package
+    debug:
+      msg:
+      - "{{ item.key }} 的 server_name :  {{ item.value.server_name }}"
+      - "{{ item.key }} 的 server_port :  {{ item.value.server_port }}"
+      - "{{ item.key }} 的 server_root :  {{ item.value.server_root }}"
+    loop: "{{ dict4 | dict2items }}"
+  - name: mission 5 install all nginx
+    template:
+      src: ./template/nginx_template.conf
+      dest: /etc/nginx/conf.d/{{ item.value.server_name }}.conf
+    loop: "{{ dict4 | dict2items }}"
+  - name: mission 6 create nginx pwd
+    file:
+      name: "{{ item.value.server_root }}"
+      state: directory
+    loop: "{{ dict4 | dict2items }}"
+  - name: copy nginx index.html
+    template:
+      src: ./template/index.html
+      dest: "{{ item.value.server_root }}"
+    loop: "{{ dict4 | dict2items }}"
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
