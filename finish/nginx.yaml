@@ -1,0 +1,34 @@
+---
+- name: install nginx
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: install nginx
+    yum:
+      name: nginx
+      state: latest
+  - name: copy nginx.conf
+    template:
+      src: ./template/nginx.conf
+      dest: /etc/nginx/conf.d/
+  - name: mkdir /opt/aaa
+    file:
+      name: /opt/aaa
+      state: directory
+  - name: copy index.html to /opt/aaa
+    template:
+      src: ./template/index.html
+      dest: /opt/aaa/
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+  - name: curl http://127.0.0.1
+    uri:
+      url: http://127.0.0.1
+      return_contexnt: yes
+    register: URI_80
+  - name: show URI_80
+    debug:
+      var: "{{ URI_80 }}}"
