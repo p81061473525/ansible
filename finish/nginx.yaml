@@ -31,4 +31,4 @@
     register: URI_80
   - name: show URI_80
     debug:
-      var: "{{ URI_80 }}}"
+      var: "{{ URI_80 }}"
