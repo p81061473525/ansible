@@ -1,0 +1,6 @@
+[as]
+192.168.50.20[1:4]
+
+[as]
+ansible_user=vagrant
+ansible_password=vagrant
