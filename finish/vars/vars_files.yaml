@@ -1,0 +1,14 @@
+---
+nginx:
+  apple.com:
+    server_name: 'apple.com'
+    server_port: '8081'
+    server_root: '/opt/apple'
+  banana.com:
+    server_name: 'banana.com'
+    server_port: '8082'
+    server_root: '/opt/banana'
+  cat.com:
+    server_name: 'cat.com'
+    server_port: '8083'
+    server_root: '/opt/cat'
