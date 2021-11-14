@@ -1,0 +1,54 @@
+---
+- name: install muti nginx
+  hosts: all
+  gather_facts: false
+  become: true
+  vars_files:
+  - vars/vars_files.yaml
+  tasks:
+  - name: install nginx
+    yum:
+      name: nginx
+      state:  latest
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+  - name: debug nginx.conf
+    debug:
+      msg:
+      - "{{ item.key }} 的 server_name 為 {{ item.value.server_name }} "
+      - "{{ item.key }} 的 server_port 為 {{ item.value.server_port }} "
+      - "{{ item.key }} 的 server_root 為 {{ item.value.server_root }} "
+    loop: "{{ nginx | dict2items }}"
+  - name: mkdir server_root
+    file:
+      name: "{{ item.value.server_root }}"
+      state: directory
+    loop: "{{ nginx | dict2items }}"
+  - name: copy nginx_template conf
+    template:
+      src: ./template/nginx-template.conf
+      dest: /etc/nginx/conf.d/{{ item.value.server_name }}.conf
+    loop: "{{ nginx | dict2items }}"
+  - name: copy index
+    template:
+      src: ./template/index.html
+      dest: "{{ item.value.server_root }}"
+    loop: "{{ nginx | dict2items }}"
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+  - name: uri
+    uri:
+      url: http://127.0.0.1:{{ item.value.server_port }}
+      return_content: yes
+    register: URI_all
+    loop: "{{ nginx | dict2items }}"
+  - name: debug
+    debug:
+      var: URI_all
+
+      # - status: "{{ URI_all.status }}"
+      #- content: "{{ URI_all.content }}"
