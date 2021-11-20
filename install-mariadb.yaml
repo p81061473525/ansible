@@ -1,0 +1,26 @@
+---
+- name: install mariadb
+  hosts: all
+  gather_facts: False
+  become: true
+  tasks:
+  - name: add yum_repository
+    yum_repository:
+      name: mariadb
+      description: mariadb
+      baseurl: https://tw1.mirror.blendbyte.net/mariadb/yum/10.6/centos7-amd64
+      gpgkey: https://tw1.mirror.blendbyte.net/mariadb/yum/RPM-GPG-KEY-MariaDB
+      gpgcheck: 1
+  - name: yum install 相關套件
+    yum:
+      name: "{{ item }}"
+    loop:
+      - MariaDB-server
+      - MariaDB-client # MariaDB-server MariaDB-client
+      - MariaDB-devel  #?
+      - MySQL-python   #?
+  - name: 啟動 mariadb
+    service:
+      name: mariadb
+      state: started
+      enabled: true
