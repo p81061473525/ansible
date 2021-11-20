@@ -1,0 +1,13 @@
+---
+- name: 安裝 zabbix-agnet
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+  - name: 安裝 ZBX-agent
+    shell:
+      cmd:
+        'docker start $(docker ps -qa)'
+
+
+ # 'docker run --name some-zabbix-agent -p 10050:10050 -e ZBX_SERVER_HOST="192.168.50.200" -d zabbix/zabbix-agent'
