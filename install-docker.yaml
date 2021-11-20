@@ -1,0 +1,27 @@
+---
+- name: 安裝 docker
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+  - name: copy file
+    copy:
+      src: ~/docker
+      dest: /root
+
+  #- name: add exec
+  #  file:
+  #    path: ~/docker/allinone.sh
+  #    state: file
+  #    mode: '0755'
+
+  - name: Change file ownership, group and permissions
+    file:
+      path: ~/docker/allinone.sh
+      state: touch
+      mode: '0755'
+
+  - name: install docker
+    shell:
+      cmd:
+        ~/docker/allinone.sh
