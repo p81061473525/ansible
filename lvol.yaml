@@ -1,0 +1,38 @@
+---
+- name: LVM
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: lvm
+    yum:
+      name: 'lvm*'
+      state: present
+
+  - name: Create a new primary partition
+    parted:
+      device: /dev/sdb
+      number: 1
+      state: present
+
+  - name: volume group creation
+    lvg:
+      vg: test
+      pvs: /dev/sdb1
+
+  - name: Create a logical volume of 512m with disks /dev/sda and /dev/sdb
+    lvol:
+      vg: test
+      lv: testlv
+      size: 1.5G                                                                                                   
+  - name: create file system for /dev/vg01/lv01
+    filesystem:
+      fstype: xfs
+      dev: /dev/test/testlv
+
+  - name: mount logical volumes
+    mount:
+      path: /mnt
+      src: /dev/test/testlv
+      fstype: xfs
+      state: mounted
