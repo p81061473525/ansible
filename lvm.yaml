@@ -1,0 +1,35 @@
+---
+- name: make lvm parted
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+  - name: install lvm
+    yum:
+      name: 'lvm*'
+      state: latest
+  - name: 切割 part
+    parted:
+      device: /dev/sdb
+      number: 1
+      state: present
+      # ansible 預設是切割 msdos
+  - name: 創建 vg
+    lvg:
+      vg: vg-test
+      pvs: /dev/sdb1
+  - name: 創建 lv
+    lvol:
+      vg: vg-test
+      lv: lv-test
+      size: 1.5G
+  - name: 創建 xfs filesystem
+    filesystem:
+      fstype: xfs
+      dev: /dev/mapper/vg--test-lv--test
+  - name: mount
+    mount:
+      path: /mnt
+      fstype: xfs
+      src: /dev/mapper/vg--test-lv--test
+      state: mounted
